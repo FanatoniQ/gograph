@@ -1,3 +1,8 @@
+/**
+** file: graph_test.go
+** testing functions for graph
+** author: FanatoniQ
+**/
 package graph
 
 import (
