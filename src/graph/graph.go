@@ -8,8 +8,11 @@ package graph
 import(
 )
 
-/** generic item type **/
+/** Generic item type for Node Value **/
 type Item interface{}
+
+/** Numeric item type for graph weight **/
+type WeightItem uint
 
 /** Node data structure **/
 type Node struct {
@@ -21,7 +24,7 @@ type Node struct {
 **/
 type Edge struct {
   Vertex *Node
-  Weight uint
+  Weight WeightItem
 }
 
 /** Graph includes a list of allocated nodes
@@ -39,7 +42,7 @@ func (g *Graph) AddNode(n *Node) {
   g.Nodes = append(g.Nodes, n)
 }
 
-func (g *Graph) AddEdge(src, dst *Node, w uint) {
+func (g *Graph) AddEdge(src, dst *Node, w WeightItem) {
   g.Edges[*src] = append(g.Edges[*src], &Edge{dst, w})
 }
 

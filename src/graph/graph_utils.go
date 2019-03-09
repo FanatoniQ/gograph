@@ -8,6 +8,6 @@ package graph
 import(
 )
 
-func Min(a, b uint) uint {
+func Min(a, b WeightItem) WeightItem {
   if a > b { return b } else { return a }
 }
