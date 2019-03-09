@@ -37,14 +37,13 @@ func (g *Graph) BFS(src *Node, fun func(*Node)) {
   }
   seen[src] = true
   q.Push(src)
-  fun(src)
   var val *Node
   for !q.IsEmpty() {
     val = q.Pop()
+    fun (val)
     /** for all successors **/
     for _,e := range g.Edges[*val] {
       if !seen[e.Vertex] {
-        fun(e.Vertex)
         q.Push(e.Vertex)
         seen[e.Vertex] = true
       }
