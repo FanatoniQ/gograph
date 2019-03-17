@@ -29,6 +29,9 @@ func (g *Graph) BellmanFord(src *Node) map[*Node]WeightItem {
   return dist
 }
 
+/**
+** Breadth-first search Algorithm
+**/
 func (g *Graph) BFS(src *Node, fun func(*Node)) {
   q := Queue{}
   seen := make(map[*Node]bool)
@@ -49,4 +52,29 @@ func (g *Graph) BFS(src *Node, fun func(*Node)) {
       }
     }
   }
+}
+
+
+/**
+** dfs recusive algorithm
+**/
+func (g *Graph) dfs_rec(src *Node, seen map[*Node]bool,fun func(*Node)) {
+  seen[src] = true
+  fun (src)
+  for _,e := range g.Edges[*src] {
+    if !seen[e.Vertex] {
+      g.dfs_rec(e.Vertex, seen, fun)
+    }
+  }
+}
+
+/**
+** Depth-first-serch Algorithm
+**/
+func (g *Graph) DFS(src *Node, fun func(*Node)) {
+  seen := make(map[*Node]bool)
+  for _,e := range g.Nodes {
+    seen[e] = false
+  }
+  g.dfs_rec(src, seen, fun)
 }
