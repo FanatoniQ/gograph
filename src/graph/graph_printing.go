@@ -19,9 +19,14 @@ func (e *Edge) String() string {
 
 func (g *Graph) String() string {
   var dump string = ""
+  var neigh []*Edge // edges list (avoid multiple map search)
   for _,s := range g.Nodes {
+    neigh = g.Edges[*s]
+    if len(neigh) == 0 {
+      continue
+    }
     dump += s.String() + " ----> "
-    for _,e := range g.Edges[*s] {
+    for _,e := range neigh {
       dump += "(" + e.String() + ") "
     }
     dump += "\n"
